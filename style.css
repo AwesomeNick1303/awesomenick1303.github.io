@@ -1,1 +1,25 @@
-html {}
+* {
+	background-color: #0FB;
+	text-align: left;
+}
+
+.container {
+	position:relative;
+}
+#sidebar {
+    position:absolute;
+    top:0; bottom:0; left:0;
+    width:50px;
+    background:#0BF;
+}
+
+#header {
+	width:100px;
+	height:20px; 
+    margin:0 0 5px 0;
+}
+#content {
+	width:100px;
+	height:50px;
+    margin:5px 0 5px 0;
+}
