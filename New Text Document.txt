@@ -1,0 +1,20 @@
+<img id="img1" class="image" src="File_000.jpeg" \>
+<span class="image-text" id="img-text1"></span>
+<img id="img2" class="image" src="File_001.jpeg" \>
+<span class="image-text" id="img-text2"></span>
+<img id="img3" class="image" src="File_003.gif" \>
+<span class="image-text" id="img-text3"></span>
+<img id="img4" class="image" src="File_004.gif" \>
+<span class="image-text" id="img-text4"></span>
+<img id="img5" class="image" src="File_005.gif" \>
+<span class="image-text" id="img-text5"></span>
+<img id="img6" class="image" src="File_006.gif" \>
+<span class="image-text" id="img-text6"></span>
+<img id="img7" class="image" src="File_007.gif" \>
+<span class="image-text" id="img-text7"></span>
+<img id="img8" class="image" src="File_008.gif" \>
+<span class="image-text" id="img-text8"></span>
+<img id="img9" class="image" src="File_002.jpeg" \>
+<span class="image-text" id="img-text9"></span>
+<img id="img10" class="image" src="File_009.gif" \>
+<span class="image-text" id="img-text10"></span>
