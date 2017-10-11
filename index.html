@@ -1,28 +1,104 @@
 <html>
+
 	<head>
-		<title>Home</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
+
 	<body>
 		<div id="container">
-			<div id="header">Nicholas Eiffert's Science Project</div>
-			<div id="sidebar">
-				<a href="index.html" class="page-link">Home</a><br \>
-				<a href="page1.html" class="image-link">Image #1</a><br \>
-				<a href="page2.html" class="image-link">Image #2</a><br \>
-				<a href="page3.html" class="image-link">Image #3</a><br \>
-				<a href="page4.html" class="image-link">Image #4</a><br \>
-				<a href="page5.html" class="image-link">Image #5</a><br \>
-				<a href="page6.html" class="image-link">Image #6</a><br \>
-				<a href="page7.html" class="image-link">Image #7</a><br \>
-				<a href="page8.html" class="image-link">Image #8</a><br \>
-				<a href="page9.html" class="image-link">Image #9</a><br \>
-				<a href="page10.html" class="image-link">Image #10</a>
-			</div>
-			<div id="content">				
-				This is Nicholas Eiffert's Forces and Motion Project. Use the sidebar to navigate through the pages. The numbers to the images are in the title of the page if you need to see them.<br>
-				Source code is <a href="https://github.com/AwesomeNick1303/awesomenick1303.github.io">here</a> if you're interested.
-			</div>
- 		</div>
+			<div id="-1" class="event">Use the up and down arrow keys to navigate the timeline</div>
+			<div id="0" class="event">Multicellular marine organisms</div>
+			<div id="1" class="event">Fish-like vertebrates appear in oceans and streams</div>
+			<div id="2" class="event">Arthropods appear on land</div>
+			<div id="3" class="event">Land plants appear</div>
+			<div id="4" class="event">Four-limbed vertebrates appear on land</div>
+			<div id="5" class="event">Seed plants and forests appear</div>
+			<div id="6" class="event">Supercontinent Pangea forms</div>
+			<div id="7" class="event">Over 90% of marine and 70% of terrestrial life go extinct during the Earth's largest mass extinction</div>
+			<div id="8" class="event">Dinosaurs evolve</div>
+			<div id="9" class="event">Pangea begins to break apart</div>
+			<div id="10" class="event">Earliest flowers appear</div>
+			<div id="11" class="event">Asteroid hits the Yucatan Peninsula</div>
+			<div id="12" class="event">Ammonites and non-avian dinosaurs go extinct</div>
+			<div id="13" class="event">Early hominids appear</div>
+			<div id="14" class="event">Ice age begins</div>
+			<div id="15" class="event">Anatomically modern humans evolve</div>
+			<div id="16" class="event">Cave paintings - early expressions of consciousness</div>
+			<div id="17" class="event">Present day</div>
+		</div>
+		<div id="timeago"><span id="time"></span></div>
+		<canvas id="canvas"></canvas>
+		<script>
+			var item = -1;
+			var container = document.getElementById("container");
+			var canvas = document.getElementById("canvas");
+			canvas.setAttribute("height", window.innerHeight);
+			canvas.setAttribute("width", window.innerWidth / 100 * 19);
+			var ctx = canvas.getContext("2d");
+			var timeline = [2100, 525, 450, 450, 390, 380, 335, 252, 231, 175, 140, 66, 66, 23, .11, .045, .004, 0];
+			var timelineText = ["2.1 BYA", "525 MYA", "450 MYA", "450 MYA", "390 MYA", "380 MYA", "335 MYA", "252 MYA",
+				"231 MYA", "175 MYA", "140 MYA", "66 MYA", "66 MYA", "23 MYA", "110 KYA", "45 KYA", "4 KYA", "Now"
+			];
+
+			function line(x1, y1, x2, y2) {
+				ctx.beginPath();
+				ctx.moveTo(x1, y1);
+				ctx.lineTo(x2, y2);
+				ctx.stroke();
+				console.log(x1 + "," + y1 + ";" + x2 + "," + y2);
+			}
+
+			function show(num) {
+				for (var i = 0; i < container.children.length; i++) {
+					container.children.item(i).setAttribute("style", "display:none");
+				}
+				container.children.item(num + 1).setAttribute("style", "");
+				draw(num);
+				document.getElementById("time").innerText = timelineText[num] || " ";
+			}
+			show(-1);
+
+			function draw(highlight) {
+				var height = canvas.clientHeight;
+				var width = canvas.clientWidth;
+				console.log(height + "," + width)
+				var max = Math.min(timeline[highlight] * 5, 2100) || 2100;
+				console.log(max);
+				ctx.fillStyle = "white";
+				ctx.fillRect(0, 0, width, height);
+				ctx.lineWidth = 1;
+				ctx.strokeStyle = "black";
+				line(width / 4, 0, width / 4, height);
+				for (var i = 0; i < timeline.length; i++) {
+					line(0, -(timeline[i] * height / max) + height, width / 2, -(timeline[i] * height / max) + height);
+				}
+				ctx.strokeStyle = "red";
+				ctx.lineWidth = 5;
+				line(0, -(timeline[highlight] * height / max) + height, width / 2, -(timeline[highlight] * height / max) + height);
+				ctx.strokeStyle = "blue";
+				ctx.lineWidth = 2;
+				for (var i = 1; i < 5; i++) {
+					line(width / 8, height * i / 5, width * 3 / 8, height * i / 5);
+				}
+				ctx.fillStyle = "black";
+				ctx.font = "16px sans-serif";
+				ctx.fillText("Scale:", width / 2 + 10, height * 7 / 8);
+				ctx.fillText("1 blue line =", width / 2 + 10, height * 7 / 8 + 16);
+				ctx.fillText(highlight <= 3 || highlight === 17 ? "420MYA" : timelineText[highlight], width / 2 + 10, height * 7 /
+					8 + 32);
+			}
+
+			document.addEventListener("keydown", function (e) {
+				if (e.keyCode === 38) {
+					item -= +(item > -1);
+					show(item);
+				}
+				if (e.keyCode === 40) {
+					item += +(item < container.children.length - 2);
+					show(item);
+				}
+			});
+		</script>
 	</body>
+
 </html>
