@@ -35,8 +35,8 @@
 			canvas.setAttribute("height", window.innerHeight);
 			canvas.setAttribute("width", window.innerWidth / 100 * 19);
 			var ctx = canvas.getContext("2d");
-			var timeline = [2100, 525, 450, 450, 390, 380, 335, 252, 231, 175, 140, 66, 66, 23, .11, .045, .004, 0];
-			var timelineText = ["2.1 BYA", "525 MYA", "450 MYA", "450 MYA", "390 MYA", "380 MYA", "335 MYA", "252 MYA",
+			var timeline = [600, 525, 450, 450, 390, 380, 335, 252, 231, 175, 140, 66, 66, 23, .11, .045, .004, 0];
+			var timelineText = ["600MYA", "525 MYA", "450 MYA", "450 MYA", "390 MYA", "380 MYA", "335 MYA", "252 MYA",
 				"231 MYA", "175 MYA", "140 MYA", "66 MYA", "66 MYA", "23 MYA", "110 KYA", "45 KYA", "4 KYA", "Now"
 			];
 
@@ -62,7 +62,7 @@
 				var height = canvas.clientHeight;
 				var width = canvas.clientWidth;
 				console.log(height + "," + width)
-				var max = Math.min(timeline[highlight] * 5, 2100) || 2100;
+				var max = Math.min(timeline[highlight] * 5, 600) || 600;
 				console.log(max);
 				ctx.fillStyle = "white";
 				ctx.fillRect(0, 0, width, height);
@@ -84,7 +84,8 @@
 				ctx.font = "16px sans-serif";
 				ctx.fillText("Scale:", width / 2 + 10, height * 7 / 8);
 				ctx.fillText("1 blue line =", width / 2 + 10, height * 7 / 8 + 16);
-				ctx.fillText(highlight <= 3 || highlight === 17 ? "420MYA" : timelineText[highlight], width / 2 + 10, height * 7 /
+				ctx.fillText(timeline[highlight] >= 120 || highlight === 17 ? "120MYA" : timelineText[highlight], width / 2 + 10,
+					height * 7 /
 					8 + 32);
 			}
 
